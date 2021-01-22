@@ -2,8 +2,8 @@
 
 namespace SuperAdmin\Entity;
 
-use SuperAdmin\Entity\Compose\UserOwned;
 use SuperAdmin\Entity\Compose\UserOwnedTrait;
+use SuperAdmin\Security\UserOwned;
 
 /**
  * Class UserApiKey

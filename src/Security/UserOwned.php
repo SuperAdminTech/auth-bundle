@@ -1,13 +1,11 @@
 <?php
 
 
-namespace SuperAdmin\Entity\Compose;
-
-use SuperAdmin\Security\User;
+namespace SuperAdmin\Security;
 
 /**
  * Interface UserOwned
- * @package SuperAdmin\Entity\Compose
+ * @package SuperAdmin\Security
  */
 interface UserOwned {
 
