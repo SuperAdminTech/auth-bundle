@@ -1,0 +1,8 @@
+
+services:
+    SuperAdmin\Tests\Mock\:
+        resource: '../tests/Mock'
+        autowire: true
+        autoconfigure: true
+
+    SuperAdmin\Utils\ExchangeFactory: '@App\Tests\Mock\CcxtFactory'
