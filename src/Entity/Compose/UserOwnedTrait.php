@@ -16,7 +16,7 @@ trait UserOwnedTrait
 
     /**
      * @var string
-     * @ORM\Column(type="UUID")
+     * @ORM\Column(type="guid")
      */
     public $user_id;
 

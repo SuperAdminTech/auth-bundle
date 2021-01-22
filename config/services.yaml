@@ -33,7 +33,7 @@ services:
 
     SuperAdmin\Security\Serializer\ContextBuilder:
         decorates: 'api_platform.serializer.context_builder'
-        arguments: [ '@App\Security\Serializer\ContextBuilder.inner' ]
+        arguments: [ '@SuperAdmin\Security\Serializer\ContextBuilder.inner' ]
         autoconfigure: false
 
     SuperAdmin\EventListener\OwnedFilterConfigurator:
