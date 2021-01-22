@@ -15,7 +15,7 @@ trait AccountOwnedTrait {
      * @var string
      * @ORM\Column(type="guid")
      */
-    public $user_id;
+    public $account_id;
 
     /**
      * @return Account
