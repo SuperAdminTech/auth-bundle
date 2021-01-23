@@ -1,8 +1,8 @@
 <?php
 
-namespace SuperAdmin\Security;
+namespace SuperAdmin\Bundle\Security;
 
-use SuperAdmin\Entity\ApiKey;
+use SuperAdmin\Bundle\Entity\ApiKey;
 use Lexik\Bundle\JWTAuthenticationBundle\Security\User\JWTUserInterface;
 
 class User implements JWTUserInterface, Owner {

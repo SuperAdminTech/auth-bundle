@@ -11,32 +11,15 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
-    # makes classes in src/ available to be used as services
-    # this creates a service per class whose id is the fully-qualified class name
-    SuperAdmin\:
-        resource: '../src/*'
-        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
-
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
-    SuperAdmin\Action\:
-        resource: '../src/Action'
-        tags: ['controller.service_arguments']
 
-    SuperAdmin\EventSubscriber\Doctrine\:
-        resource: '../src/EventSubscriber/Doctrine'
-        tags: ['doctrine.event_subscriber']
-
-    SuperAdmin\EventSubscriber\Kernel\:
-        resource: '../src/EventSubscriber/Kernel'
-        tags: ['kernel.event_subscriber']
-
-    SuperAdmin\Security\Serializer\ContextBuilder:
+    SuperAdmin\Bundle\Security\Serializer\ContextBuilder:
         decorates: 'api_platform.serializer.context_builder'
-        arguments: [ '@SuperAdmin\Security\Serializer\ContextBuilder.inner' ]
+        arguments: [ '@SuperAdmin\Bundle\Security\Serializer\ContextBuilder.inner' ]
         autoconfigure: false
 
-    SuperAdmin\EventListener\OwnedFilterConfigurator:
+    SuperAdmin\Bundle\EventListener\OwnedFilterConfigurator:
         tags:
             - { name: kernel.event_listener, event: kernel.request, priority: 5 }
         # Autoconfiguration must be disabled to set a custom priority

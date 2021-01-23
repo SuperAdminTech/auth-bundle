@@ -1,8 +1,8 @@
 <?php
 
-namespace SuperAdmin\Security\Voter;
+namespace SuperAdmin\Bundle\Security\Voter;
 
-use SuperAdmin\Security\User;
+use SuperAdmin\Bundle\Security\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\Security;
 
 /**
  * Class ApiKeyUrlsVoter
- * @package SuperAdmin\Security\Voter
+ * @package SuperAdmin\Bundle\Security\Voter
  */
 class ApiKeyUrlsVoter extends Voter {
 

@@ -1,10 +1,10 @@
 <?php
 
 
-namespace SuperAdmin\Filter;
+namespace SuperAdmin\Bundle\Filter;
 
 
-use SuperAdmin\Entity\Compose\Owned;
+use SuperAdmin\Bundle\Entity\Compose\Owned;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Query\Filter\SQLFilter;
 use InvalidArgumentException;

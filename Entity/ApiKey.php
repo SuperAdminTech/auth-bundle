@@ -1,13 +1,13 @@
 <?php
 
-namespace SuperAdmin\Entity;
+namespace SuperAdmin\Bundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Class ApiKey
- * @package SuperAdmin\Entity
+ * @package SuperAdmin\Bundle\Entity
  */
 abstract class ApiKey {
 

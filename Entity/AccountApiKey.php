@@ -1,13 +1,13 @@
 <?php
 
-namespace SuperAdmin\Entity;
+namespace SuperAdmin\Bundle\Entity;
 
-use SuperAdmin\Entity\Compose\AccountOwnedTrait;
-use SuperAdmin\Security\AccountOwned;
+use SuperAdmin\Bundle\Entity\Compose\AccountOwnedTrait;
+use SuperAdmin\Bundle\Security\AccountOwned;
 
 /**
  * Class AccountApiKey
- * @package SuperAdmin\Entity
+ * @package SuperAdmin\Bundle\Entity
  */
 class AccountApiKey extends ApiKey implements AccountOwned {
     use AccountOwnedTrait;

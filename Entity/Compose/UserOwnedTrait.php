@@ -1,15 +1,15 @@
 <?php
 
 
-namespace SuperAdmin\Entity\Compose;
+namespace SuperAdmin\Bundle\Entity\Compose;
 
 
-use SuperAdmin\Security\User;
+use SuperAdmin\Bundle\Security\User;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Trait UserOwnedTrait
- * @package SuperAdmin\Entity\Compose
+ * @package SuperAdmin\Bundle\Entity\Compose
  */
 trait UserOwnedTrait
 {

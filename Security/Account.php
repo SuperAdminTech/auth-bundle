@@ -1,6 +1,6 @@
 <?php
 
-namespace SuperAdmin\Security;
+namespace SuperAdmin\Bundle\Security;
 
 class Account implements Owner {
 

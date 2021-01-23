@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SuperAdmin\EventListener;
+namespace SuperAdmin\Bundle\EventListener;
 
 
 use Doctrine\ORM\EntityManagerInterface;

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SuperAdmin\Security;
+namespace SuperAdmin\Bundle\Security;
 
 
 interface Owner {

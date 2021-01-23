@@ -1,12 +1,12 @@
 <?php
 
 
-namespace SuperAdmin\Security;
+namespace SuperAdmin\Bundle\Security;
 
 
 /**
  * Interface AccountOwned
- * @package SuperAdmin\Security
+ * @package SuperAdmin\Bundle\Security
  */
 interface AccountOwned {
 

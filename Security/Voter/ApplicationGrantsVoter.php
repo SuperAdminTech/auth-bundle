@@ -1,9 +1,9 @@
 <?php
 
-namespace SuperAdmin\Security\Voter;
+namespace SuperAdmin\Bundle\Security\Voter;
 
-use SuperAdmin\Entity\Compose\Owned;
-use SuperAdmin\Security\User;
+use SuperAdmin\Bundle\Entity\Compose\Owned;
+use SuperAdmin\Bundle\Security\User;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\Security;
 
 /**
  * Class ApplicationGrantsVoter
- * @package SuperAdmin\Security\Voter
+ * @package SuperAdmin\Bundle\Security\Voter
  */
 class ApplicationGrantsVoter extends Voter {
 

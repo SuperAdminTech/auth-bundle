@@ -1,9 +1,9 @@
 <?php
 
-namespace SuperAdmin\Security\Authenticator;
+namespace SuperAdmin\Bundle\Security\Authenticator;
 
-use SuperAdmin\Entity\ApiKey;
-use SuperAdmin\Security\User;
+use SuperAdmin\Bundle\Entity\ApiKey;
+use SuperAdmin\Bundle\Security\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +16,7 @@ use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 
 /**
  * Class ApiKeyAuthenticator
- * @package SuperAdmin\Security\Authenticator
+ * @package SuperAdmin\Bundle\Security\Authenticator
  */
 class ApiKeyAuthenticator extends AbstractGuardAuthenticator
 {

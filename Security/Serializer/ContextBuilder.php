@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SuperAdmin\Security\Serializer;
+namespace SuperAdmin\Bundle\Security\Serializer;
 
 
 use ApiPlatform\Core\Exception\RuntimeException;
