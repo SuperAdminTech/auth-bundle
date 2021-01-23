@@ -10,7 +10,7 @@ use InvalidArgumentException;
 use SuperAdmin\Bundle\Security\AccountOwned;
 use SuperAdmin\Bundle\Security\User;
 
-final class OwnedFIlter extends SQLFilter
+final class OwnedFilter extends SQLFilter
 {
 
     /**
