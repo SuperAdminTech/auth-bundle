@@ -75,7 +75,10 @@ security:
 services:
     # here your original configurations
     # ...
-    
+
+    SuperAdmin\Bundle\Security\Authenticator\ApiKeyAuthenticator:
+        arguments: [ '@doctrine.orm.entity_manager']
+
     SuperAdmin\Bundle\Security\Serializer\ContextBuilder:
         decorates: 'api_platform.serializer.context_builder'
         arguments: [ '@SuperAdmin\Bundle\Security\Serializer\ContextBuilder.inner' ]
