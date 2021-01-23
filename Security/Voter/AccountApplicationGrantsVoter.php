@@ -2,18 +2,17 @@
 
 namespace SuperAdmin\Bundle\Security\Voter;
 
-use SuperAdmin\Bundle\Entity\Compose\Owned;
+use SuperAdmin\Bundle\Security\AccountOwned;
 use SuperAdmin\Bundle\Security\User;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Security;
 
 /**
- * Class DefaultGrantsVoter
+ * Class AccountApplicationGrantsVoter
  * @package SuperAdmin\Bundle\Security\Voter
  */
-class DefaultGrantsVoter extends Voter {
+class AccountApplicationGrantsVoter extends Voter {
 
     /** @var Security */
     private $security;
@@ -29,12 +28,8 @@ class DefaultGrantsVoter extends Voter {
 
     protected function supports($attribute, $subject)
     {
-        $supportedGrants = [
-            User::ACCOUNT_MANAGER,
-            User::ACCOUNT_WORKER
-        ];
-        $supportsAttribute = in_array($attribute, $supportedGrants);
-        $supportsSubject = $subject instanceof Owned;
+        $supportsAttribute = str_starts_with('ACCOUNT_', $attribute);
+        $supportsSubject = $subject instanceof AccountOwned;
 
         return $supportsAttribute && $supportsSubject;
     }
@@ -44,11 +39,8 @@ class DefaultGrantsVoter extends Voter {
         /** @var User $user */
         $user = $this->security->getUser();
         foreach ($user->permissions as $permission){
-            $isManager = in_array(User::ACCOUNT_MANAGER, $permission['grants']);
-            $isWorker = in_array(User::ACCOUNT_WORKER, $permission['grants']);
-            if($subject->owner_id == $permission['account']['id']) {
-                if ($isManager) return true;
-                if ($isWorker && $attribute === User::ACCOUNT_WORKER) return true;
+            if($subject->account_id == $permission['account']['id'] && in_array($attribute, $permission['grants'])) {
+                return true;
             }
         }
         return false;

@@ -2,18 +2,18 @@
 
 namespace SuperAdmin\Bundle\Security\Voter;
 
-use SuperAdmin\Bundle\Entity\Compose\Owned;
+use SuperAdmin\Bundle\Security\AccountOwned;
 use SuperAdmin\Bundle\Security\User;
-use Symfony\Component\HttpFoundation\RequestStack;
+use SuperAdmin\Bundle\Security\UserOwned;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Security;
 
 /**
- * Class ApplicationGrantsVoter
+ * Class UserGrantsVoter
  * @package SuperAdmin\Bundle\Security\Voter
  */
-class ApplicationGrantsVoter extends Voter {
+class UserGrantsVoter extends Voter {
 
     /** @var Security */
     private $security;
@@ -29,25 +29,13 @@ class ApplicationGrantsVoter extends Voter {
 
     protected function supports($attribute, $subject)
     {
-        $supportedGrants = [
-            User::ACCOUNT_INVESTOR,
-            User::ACCOUNT_TRADER
-        ];
-        $supportsAttribute = in_array($attribute, $supportedGrants);
-        $supportsSubject = $subject instanceof Owned;
-
-        return $supportsAttribute && $supportsSubject;
+        return $subject instanceof UserOwned;
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
         /** @var User $user */
         $user = $this->security->getUser();
-        foreach ($user->permissions as $permission){
-            if($subject->owner_id == $permission['account']['id'] && in_array($attribute, $permission['grants'])) {
-                return true;
-            }
-        }
-        return false;
+        return $subject->user_id === $user->id;
     }
 }
