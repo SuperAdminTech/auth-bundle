@@ -29,6 +29,13 @@ class User implements JWTUserInterface, Owner {
     public array $urls;
 
     /**
+     * @return string
+     */
+    public function __toString(): string {
+        return $this->id;
+    }
+
+    /**
      * @inheritDoc
      */
     public static function createFromPayload($username, array $payload)
