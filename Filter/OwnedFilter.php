@@ -9,6 +9,7 @@ use Doctrine\ORM\Query\Filter\SQLFilter;
 use InvalidArgumentException;
 use SuperAdmin\Bundle\Security\AccountOwned;
 use SuperAdmin\Bundle\Security\User;
+use SuperAdmin\Bundle\Security\UserOwned;
 
 final class OwnedFilter extends SQLFilter
 {
@@ -21,7 +22,10 @@ final class OwnedFilter extends SQLFilter
 
         // The Doctrine filter is called for any query on any entity
         // Check if the current entity is "user aware" (marked with an annotation)
-        if(! is_subclass_of($targetEntity->name, AccountOwned::class)) {
+        $checkAccountFilter = is_subclass_of($targetEntity->name, AccountOwned::class);
+        $checkUserFilter = is_subclass_of($targetEntity->name, UserOwned::class);
+
+        if(!$checkAccountFilter && !$checkUserFilter) {
             return '';
         }
 
@@ -38,17 +42,25 @@ final class OwnedFilter extends SQLFilter
             return '';
         }
 
-        $sqlUserFilter = sprintf("%s.user_id = '%s'", $targetTableAlias, $user->id);
-
-        $sqlParts = [];
-        foreach ($user->permissions as $permission) {
-            if (in_array(User::ACCOUNT_MANAGER, $permission->account->grants)) {
-                $sqlParts [] = sprintf("%s.account_id = '%s'", $targetTableAlias, $permission->account->id);
-            }
+        $sqlUserFilter = false;
+        if ($checkUserFilter) {
+            $sqlUserFilter = sprintf("%s.user_id = '%s'", $targetTableAlias, $user->id);
         }
-        $sqlAccountFilter = implode(" OR ", $sqlParts);
 
-        return $sqlUserFilter . ' OR ' . $sqlAccountFilter;
+        $sqlAccountFilter = false;
+        if ($checkAccountFilter) {
+            $sqlParts = [];
+            foreach ($user->permissions as $permission) {
+                if (in_array(User::ACCOUNT_MANAGER, $permission->account->grants)) {
+                    $sqlParts [] = sprintf("%s.account_id = '%s'", $targetTableAlias, $permission->account->id);
+                }
+            }
+            $sqlAccountFilter = implode(" OR ", $sqlParts);
+        }
+
+        if ($checkAccountFilter && $checkUserFilter) return $sqlUserFilter . ' OR ' . $sqlAccountFilter;
+        if ($checkAccountFilter) return $sqlAccountFilter;
+        return $sqlUserFilter;
     }
 
 }
