@@ -18,15 +18,14 @@ trait UserOwnedTrait
     /**
      * @var string
      * @ORM\Column(type="guid")
-     * @Assert\NotNull()
-     * @Assert\NotBlank()
      */
     public $user_id;
 
     /**
      * @return User
      */
-    public function getUser(): User {
+    public function getUser(): ?User {
+        if ($this->user_id === null) return null;
         return User::createFromId($this->user_id);
     }
 }

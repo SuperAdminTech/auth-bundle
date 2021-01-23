@@ -13,5 +13,5 @@ interface AccountOwned {
     /**
      * @return Account
      */
-    function getAccount(): Account;
+    function getAccount(): ?Account;
 }

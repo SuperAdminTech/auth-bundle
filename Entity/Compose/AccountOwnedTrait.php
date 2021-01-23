@@ -23,7 +23,8 @@ trait AccountOwnedTrait {
     /**
      * @return Account
      */
-    public function getAccount(): Account {
+    public function getAccount(): ?Account {
+        if ($this->account_id === null) return null;
         return Account::createFromId($this->account_id);
     }
 

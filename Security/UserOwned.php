@@ -12,5 +12,5 @@ interface UserOwned {
     /**
      * @return User
      */
-    function getUser(): User;
+    function getUser(): ?User;
 }
