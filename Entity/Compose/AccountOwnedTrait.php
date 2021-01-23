@@ -4,6 +4,7 @@ namespace SuperAdmin\Bundle\Entity\Compose;
 
 use SuperAdmin\Bundle\Security\Account;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -15,6 +16,7 @@ trait AccountOwnedTrait {
     /**
      * @var string
      * @ORM\Column(type="guid")
+     * @Groups({"user:read", "user:write"})
      */
     public $account_id;
 

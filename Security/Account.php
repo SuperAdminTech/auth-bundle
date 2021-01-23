@@ -17,13 +17,6 @@ class Account implements Owner {
         return $account;
     }
 
-    /**
-     * @return string
-     */
-    public function __toString(): string {
-        return $this->id;
-    }
-
     function getId()
     {
         return $this->id;
