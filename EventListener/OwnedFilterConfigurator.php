@@ -5,6 +5,7 @@ namespace SuperAdmin\Bundle\EventListener;
 
 
 use Doctrine\ORM\EntityManagerInterface;
+use SuperAdmin\Bundle\Security\User;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -42,7 +43,7 @@ class OwnedFilterConfigurator
         if($this->authorizationChecker->isGranted('ROLE_ADMIN')) return;
 
         $filter = $this->em->getFilters()->enable('owned_filter');
-        $filter->setParameter('permissions', base64_encode(json_encode($user->permissions)));
+        $filter->setParameter('user', base64_encode(json_encode($user)));
     }
 
     private function getUser(): ?UserInterface
