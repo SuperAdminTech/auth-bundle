@@ -15,8 +15,6 @@ trait AccountOwnedTrait {
     /**
      * @var string
      * @ORM\Column(type="guid")
-     * @Assert\NotNull()
-     * @Assert\NotBlank()
      */
     public $account_id;
 
