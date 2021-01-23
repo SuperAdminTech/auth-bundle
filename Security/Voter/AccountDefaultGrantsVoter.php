@@ -44,10 +44,9 @@ class AccountDefaultGrantsVoter extends Voter {
         $user = $this->security->getUser();
         foreach ($user->permissions as $permission){
             $isManager = in_array(User::ACCOUNT_MANAGER, $permission['grants']);
-            $isWorker = in_array(User::ACCOUNT_WORKER, $permission['grants']);
             if($subject->account_id == $permission['account']['id']) {
                 if ($isManager) return true;
-                if ($isWorker && $attribute === User::ACCOUNT_WORKER) return true;
+                return $attribute == User::ACCOUNT_WORKER;
             }
         }
         return false;
