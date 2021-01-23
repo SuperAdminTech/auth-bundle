@@ -104,6 +104,32 @@ USER_TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDAyMzYwNjIsImV4cCI6
 ###< superadmin/auth-bundle?env=test ###
 ```
 
+```yaml
+# File config/packages/doctrine.yaml
+
+doctrine:
+    dbal:
+        url: '%env(resolve:DATABASE_URL)%'
+
+        # IMPORTANT: You MUST configure your server version,
+        # either here or in the DATABASE_URL env var (see .env file)
+        #server_version: '5.7'
+    orm:
+        auto_generate_proxy_classes: true
+        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+        auto_mapping: true
+        mappings:
+            App:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Entity'
+                prefix: 'App\Entity'
+                alias: App
+
+        filters:
+            owned_filter:
+                class: SuperAdmin\Bundle\Filter\OwnedFilter
+```
 
 # Development
 
