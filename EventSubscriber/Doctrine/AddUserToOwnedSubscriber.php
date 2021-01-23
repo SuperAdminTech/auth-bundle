@@ -35,7 +35,7 @@ final class AddUserToOwnedSubscriber implements EventSubscriber
     {
         $owned = $event->getEntity();
 
-        if (!$owned instanceof UserOwned || $owned->getUser() === null) {
+        if (!$owned instanceof UserOwned || $owned->getUser() != null) {
             return;
         }
 
