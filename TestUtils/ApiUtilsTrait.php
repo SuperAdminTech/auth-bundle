@@ -162,11 +162,18 @@ trait ApiUtilsTrait {
             );
             $files_upload[$param] = $uf;
         }
+
+        $server = $this->getJsonHeaders();
+        $auth = $this->getAuthenticationHeaders();
+        $headers = array_merge($server, $auth);
+        $headers = array_merge($headers, $this->moreHeaders);
+
         $client->request(
             $method,
             $uri,
             [],
-            $files_upload
+            $files_upload,
+            $headers
         );
         return $client->getResponse();
     }
