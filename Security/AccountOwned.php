@@ -10,4 +10,13 @@ namespace SuperAdmin\Bundle\Security;
  */
 interface AccountOwned {
 
+    /**
+     * @return Account
+     */
+    function getAccount(): ?Account;
+
+    /**
+     * @param Account|null $account
+     */
+    function setAccount(Account $account = null);
 }

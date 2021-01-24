@@ -4,8 +4,10 @@
 namespace SuperAdmin\Bundle\Entity\Compose;
 
 
+use SuperAdmin\Bundle\Security\User;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Trait UserOwnedTrait
@@ -21,4 +23,18 @@ trait UserOwnedTrait
      */
     public $user_id;
 
+    /**
+     * @return User
+     */
+    public function getUser(): ?User {
+        if ($this->user_id === null) return null;
+        return User::createFromId($this->user_id);
+    }
+
+    /**
+     * @param User|null $user
+     */
+    public function setAccount(User $user = null) {
+        $this->user_id = $user->id;
+    }
 }

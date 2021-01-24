@@ -1,5 +1,4 @@
 <?php
-// api/src/EventSubscriber/AddOwnerToArticleSubscriber.php
 
 namespace SuperAdmin\Bundle\EventSubscriber\Doctrine;
 
@@ -49,6 +48,6 @@ final class AddUserToOwnedSubscriber implements EventSubscriber
             return;
         }
 
-        $owned->user_id = $owner;
+        $owned->setUser($owner);
     }
 }
