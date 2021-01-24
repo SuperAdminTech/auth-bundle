@@ -34,7 +34,7 @@ trait UserOwnedTrait
     /**
      * @param User|null $user
      */
-    public function setAccount(User $user = null) {
+    public function setUser(User $user = null) {
         $this->user_id = $user->id;
     }
 }
