@@ -9,8 +9,4 @@ namespace SuperAdmin\Bundle\Security;
  */
 interface UserOwned {
 
-    /**
-     * @return User
-     */
-    function getUser(): ?User;
 }

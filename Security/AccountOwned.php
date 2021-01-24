@@ -10,8 +10,4 @@ namespace SuperAdmin\Bundle\Security;
  */
 interface AccountOwned {
 
-    /**
-     * @return Account
-     */
-    function getAccount(): ?Account;
 }
