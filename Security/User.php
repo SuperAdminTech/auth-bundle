@@ -60,7 +60,7 @@ class User implements JWTUserInterface, Owner {
      */
     public function getRoles()
     {
-        return (array) $this->roles;
+        return array_merge((array) $this->roles, ['ROLE_USER']);
     }
 
     /**
