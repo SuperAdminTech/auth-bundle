@@ -111,7 +111,7 @@ trait ApiUtilsTrait {
         $permissions = [['account' => $account]];
         $permissions[0]['grants'] = $grants?? ['ACCOUNT_WORKER'];
         $roles = $roles?? ['ROLE_USER'];
-        $user = $user?? 'f3c9aeaa-9c05-4c66-ab20-1c3918b4915c';
+        $user = $user?? '00000000-0000-0000-0000-000000000000';
         $payload = [
             'id' => $user,
             'ip' => '127.0.0.1',
