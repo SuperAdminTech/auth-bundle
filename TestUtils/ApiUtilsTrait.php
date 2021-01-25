@@ -3,6 +3,7 @@
 
 namespace SuperAdmin\Bundle\TestUtils;
 
+use SuperAdmin\Bundle\Security\User;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
@@ -64,6 +65,39 @@ trait ApiUtilsTrait {
      */
     protected function getAdminToken(){
         return $_ENV['ADMIN_TOKEN'];
+    }
+
+    /**
+     * @param $username
+     * @param $payload
+     * @return string
+     */
+    protected function getTokenFromPayload($username, $payload) {
+        $user = User::createFromPayload($username, $payload);
+        return $this
+            ->getApiClient()
+            ->getContainer()
+            ->get('lexik_jwt_authentication.jwt_manager')
+            ->createFromPayload($user, $payload);
+    }
+
+    /**
+     * @param $permissions
+     * @param string[] $roles
+     * @return string
+     */
+    protected function getTokenWithPermissions($permissions, $roles = ['ROLE_USER']) {
+        $payload = [
+            'id' => 'f3c9aeaa-9c05-4c66-ab20-1c3918b4915c',
+            'ip' => '127.0.0.1',
+            'roles' => ['ROLE_USER'],
+            'permissions' => $permissions,
+            'application' => [
+                'name' => 'Default App',
+                'realm' => 'default'
+            ]
+        ];
+        return $this->getTokenFromPayload('testing_user', $payload);
     }
 
     /**
