@@ -86,11 +86,11 @@ trait ApiUtilsTrait {
      * @param string[] $roles
      * @return string
      */
-    protected function getTokenWithPermissions($permissions, $roles = ['ROLE_USER']) {
+    protected function getTokenWithPermissions($account, $permissions, $roles = ['ROLE_USER']) {
         $payload = [
             'id' => 'f3c9aeaa-9c05-4c66-ab20-1c3918b4915c',
             'ip' => '127.0.0.1',
-            'roles' => ['ROLE_USER'],
+            'roles' => $roles,
             'permissions' => $permissions,
             'application' => [
                 'name' => 'Default App',
@@ -98,6 +98,31 @@ trait ApiUtilsTrait {
             ]
         ];
         return $this->getTokenFromPayload('testing_user', $payload);
+    }
+
+    /**
+     * @param $account
+     * @param null $grants
+     * @param null $roles
+     * @param null $user
+     */
+    protected function simpleAuth($account, $grants = null, $roles = null, $user = null) {
+        $permissions = ['account' => $account];
+        $permissions['grants'] = $grants?? ['ACCOUNT_WORKER'];
+        $roles = $roles?? ['ROLE_USER'];
+        $user = $user?? 'f3c9aeaa-9c05-4c66-ab20-1c3918b4915c';
+        $payload = [
+            'id' => $user,
+            'ip' => '127.0.0.1',
+            'roles' => $roles,
+            'permissions' => $permissions,
+            'application' => [
+                'name' => 'Default App',
+                'realm' => 'default'
+            ]
+        ];
+        $token = $this->getTokenFromPayload('testing_user', $payload);
+        $this->setToken($token);
     }
 
     /**
