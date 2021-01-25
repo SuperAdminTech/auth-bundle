@@ -58,9 +58,9 @@ final class OwnedFilter extends SQLFilter
             $sqlAccountFilter = implode(" OR ", $sqlParts);
         }
 
-        if ($checkAccountFilter && $checkUserFilter) return $sqlUserFilter . ' OR ' . $sqlAccountFilter;
-        if ($checkAccountFilter) return $sqlAccountFilter;
-        return $sqlUserFilter;
+        if ($sqlAccountFilter && $sqlUserFilter) return $sqlUserFilter . ' OR ' . $sqlAccountFilter;
+        if($sqlUserFilter) return $sqlUserFilter;
+        return $sqlAccountFilter;
     }
 
 }
