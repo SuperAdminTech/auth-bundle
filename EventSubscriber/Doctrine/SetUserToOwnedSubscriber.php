@@ -9,7 +9,7 @@ use SuperAdmin\Bundle\Security\User;
 use SuperAdmin\Bundle\Security\UserOwned;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-final class AddUserToOwnedSubscriber implements EventSubscriber
+final class SetUserToOwnedSubscriber implements EventSubscriber
 {
 
     /**
@@ -17,6 +17,10 @@ final class AddUserToOwnedSubscriber implements EventSubscriber
      */
     private $tokenStorage;
 
+    /**
+     * AddUserToOwnedSubscriber constructor.
+     * @param TokenStorageInterface $tokenStorage
+     */
     public function __construct(TokenStorageInterface $tokenStorage)
     {
 
@@ -34,7 +38,12 @@ final class AddUserToOwnedSubscriber implements EventSubscriber
     {
         $owned = $event->getEntity();
 
-        if (!$owned instanceof UserOwned || $owned->getUser() != null) {
+        if (!$owned instanceof UserOwned) {
+            return;
+        }
+
+        //if user_id is already set, skip
+        if($owned->getUser() != null){
             return;
         }
 
