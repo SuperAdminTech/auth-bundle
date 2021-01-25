@@ -105,8 +105,9 @@ trait ApiUtilsTrait {
      * @param null $grants
      * @param null $roles
      * @param null $user
+     * @return self
      */
-    protected function simpleAuth($account, $grants = null, $roles = null, $user = null) {
+    protected function simpleAuth($account, $grants = null, $roles = null, $user = null): self {
         $permissions = ['account' => $account];
         $permissions['grants'] = $grants?? ['ACCOUNT_WORKER'];
         $roles = $roles?? ['ROLE_USER'];
@@ -123,6 +124,7 @@ trait ApiUtilsTrait {
         ];
         $token = $this->getTokenFromPayload('testing_user', $payload);
         $this->setToken($token);
+        return $this;
     }
 
     /**
