@@ -86,7 +86,7 @@ trait ApiUtilsTrait {
      * @param string[] $roles
      * @return string
      */
-    protected function getTokenWithPermissions($account, $permissions, $roles = ['ROLE_USER']) {
+    protected function getTokenWithPermissions($permissions, $roles = ['ROLE_USER']) {
         $payload = [
             'id' => 'f3c9aeaa-9c05-4c66-ab20-1c3918b4915c',
             'ip' => '127.0.0.1',
