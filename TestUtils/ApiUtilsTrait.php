@@ -108,8 +108,8 @@ trait ApiUtilsTrait {
      * @return self
      */
     protected function simpleAuth($account, $grants = null, $roles = null, $user = null): self {
-        $permissions = ['account' => $account];
-        $permissions['grants'] = $grants?? ['ACCOUNT_WORKER'];
+        $permissions = [['account' => $account]];
+        $permissions[0]['grants'] = $grants?? ['ACCOUNT_WORKER'];
         $roles = $roles?? ['ROLE_USER'];
         $user = $user?? 'f3c9aeaa-9c05-4c66-ab20-1c3918b4915c';
         $payload = [
