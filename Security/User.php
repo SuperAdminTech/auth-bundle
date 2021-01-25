@@ -37,8 +37,11 @@ class User implements JWTUserInterface, Owner {
 
         $user->username = $username;
         $user->id = $payload['id'];
-        $user->roles = (array) $payload['roles'];
+        $user->roles = array_merge((array) $payload['roles'], ['ROLE_USER']);
         $user->permissions = (array) $payload['permissions'];
+        for ($i = 0; $i < count($user->permissions); $i++){
+            $user->permissions[$i]['grants'] = array_merge($user->permissions[$i]['grants'], ['ACCOUNT_WORKER']);
+        }
         $user->application = (array) $payload['application'];
         $user->urls = $payload['urls']?? [ApiKey::URLS_ALL];
 
@@ -60,7 +63,7 @@ class User implements JWTUserInterface, Owner {
      */
     public function getRoles()
     {
-        return array_merge((array) $this->roles, ['ROLE_USER']);
+        return (array) $this->roles;
     }
 
     /**

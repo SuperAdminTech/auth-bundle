@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\Security;
  * Class AccountApplicationGrantsVoter
  * @package SuperAdmin\Bundle\Security\Voter
  */
-class AccountApplicationGrantsVoter extends Voter {
+class AccountGrantsVoter extends Voter {
 
     /** @var Security */
     private $security;
@@ -28,7 +28,7 @@ class AccountApplicationGrantsVoter extends Voter {
 
     protected function supports($attribute, $subject)
     {
-        $supportsAttribute = str_starts_with('ACCOUNT_', $attribute);
+        $supportsAttribute = str_starts_with($attribute, 'ACCOUNT_');
         $supportsSubject = $subject instanceof AccountOwned;
 
         return $supportsAttribute && $supportsSubject;
