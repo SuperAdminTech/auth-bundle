@@ -16,6 +16,7 @@ trait AccountOwnedTrait {
     /**
      * @var string
      * @ORM\Column(type="guid")
+     * @Assert\Uuid()
      * @Groups({"user:read", "user:write"})
      */
     public $account_id;

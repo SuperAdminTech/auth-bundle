@@ -19,6 +19,7 @@ trait UserOwnedTrait
     /**
      * @var string
      * @ORM\Column(type="guid")
+     * @Assert\Uuid()
      * @Groups({"user:read", "user:write"})
      */
     public $user_id;
