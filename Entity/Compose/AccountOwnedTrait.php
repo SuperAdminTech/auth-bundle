@@ -21,17 +21,11 @@ trait AccountOwnedTrait {
      */
     public $account_id;
 
-    /**
-     * @return Account
-     */
     public function getAccount(): ?Account {
         if ($this->account_id === null) return null;
         return Account::createFromId($this->account_id);
     }
 
-    /**
-     * @param Account|null $account
-     */
     public function setAccount(Account $account = null) {
         $this->account_id = $account->id;
     }

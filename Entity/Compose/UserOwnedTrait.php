@@ -24,17 +24,11 @@ trait UserOwnedTrait
      */
     public $user_id;
 
-    /**
-     * @return User
-     */
     public function getUser(): ?User {
         if ($this->user_id === null) return null;
         return User::createFromId($this->user_id);
     }
 
-    /**
-     * @param User|null $user
-     */
     public function setUser(User $user = null) {
         $this->user_id = $user->id;
     }
