@@ -47,7 +47,7 @@ class ContextBuilder implements SerializerContextBuilderInterface {
             $context['groups'][] = $normalization? 'admin:read': 'admin:write';
         }
         if ($this->authorizationChecker->isGranted('ROLE_SUPER_ADMIN')) {
-            $context['groups'][] = $normalization? 'super:read': 'super:write';
+            $context['groups'][] = $normalization? 'sadmin:read': 'sadmin:write';
         }
 
         return $context;
