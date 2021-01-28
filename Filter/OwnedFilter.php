@@ -51,7 +51,10 @@ final class OwnedFilter extends SQLFilter
         if ($checkAccountFilter) {
             $sqlParts = [];
             foreach ($user->permissions as $permission) {
-                if (in_array(User::ACCOUNT_MANAGER, $permission->grants)) {
+                if ($checkUserFilter && in_array(User::ACCOUNT_MANAGER, $permission->grants)) {
+                    $sqlParts [] = sprintf("%s.account_id = '%s'", $targetTableAlias, $permission->account->id);
+                }
+                else {
                     $sqlParts [] = sprintf("%s.account_id = '%s'", $targetTableAlias, $permission->account->id);
                 }
             }
