@@ -2,7 +2,7 @@
     "name": "superadmin/auth-bundle",
     "description": "SuperAdmin Bundle using ApiPlatform and JWT",
     "type": "symfony-bundle",
-    "version": "1.3.17",
+    "version": "v1.3.18",
     "license": "MIT",
     "authors": [
         {
