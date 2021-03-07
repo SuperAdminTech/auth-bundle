@@ -29,7 +29,7 @@ class AccountGrantsVoter extends Voter {
     protected function supports($attribute, $subject)
     {
         $supportsAttribute = str_starts_with($attribute, 'ACCOUNT_');
-        $supportsSubject = $subject instanceof AccountOwned;
+        $supportsSubject = ($subject instanceof AccountOwned) || (is_array($subject) && isset($subject['account_id']));
 
         return $supportsAttribute && $supportsSubject;
     }
@@ -39,7 +39,8 @@ class AccountGrantsVoter extends Voter {
         /** @var User $user */
         $user = $this->security->getUser();
         foreach ($user->permissions as $permission){
-            if($subject->account_id == $permission['account']['id'] && in_array($attribute, $permission['grants'])) {
+            $account_id = $subject['account_id']?? $subject->account_id;
+            if($account_id == $permission['account']['id'] && in_array($attribute, $permission['grants'])) {
                 return true;
             }
         }
