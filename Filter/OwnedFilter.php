@@ -11,7 +11,7 @@ use SuperAdmin\Bundle\Security\AccountOwned;
 use SuperAdmin\Bundle\Security\User;
 use SuperAdmin\Bundle\Security\UserOwned;
 
-final class OwnedFilter extends SQLFilter
+class OwnedFilter extends SQLFilter
 {
 
     /**
@@ -52,7 +52,7 @@ final class OwnedFilter extends SQLFilter
             $sqlParts = [];
             foreach ($user->permissions as $permission) {
                 if ($checkUserFilter) {
-                    if (in_array(User::ACCOUNT_MANAGER, $permission->grants)) {
+                    if (!empty(array_intersect($this->getOwnedPermissions(), $permission->grants))) {
                         $sqlParts [] = sprintf("%s.account_id = '%s'", $targetTableAlias, $permission->account->id);
                     }
                     else {
@@ -67,6 +67,10 @@ final class OwnedFilter extends SQLFilter
         }
 
         return $sqlAccountFilter?? $sqlUserFilter;
+    }
+
+    protected function getOwnedPermissions(){
+        return [User::ACCOUNT_MANAGER];
     }
 
 }
