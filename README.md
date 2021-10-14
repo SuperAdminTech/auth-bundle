@@ -1,7 +1,7 @@
 SuperAdmin AuthBundle
 =====================
 
-This package provides esay [Symfony](https://symfony.com) integration with the [SuperAdmin](https://superadmin.org) API.
+This package provides easy [Symfony](https://symfony.com) integration with the [SuperAdmin](https://superadmin.org) API.
 
 You can either start your own [SuperAdmin Server]() or use the managed service for free.
 
